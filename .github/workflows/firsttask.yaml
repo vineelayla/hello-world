@@ -4,9 +4,11 @@ on:
     inputs:
       image_name:
         type: string
+        default: testimage
         required: true
       file_name:   
         type: string
+        default: pom.xml
         required: true
 env: 
   image_name: ${{ inputs.image_name }}
