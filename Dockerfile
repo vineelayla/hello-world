@@ -1,4 +1,5 @@
 FROM nginx
+
 LABEL maintainer="jahnavi"
 RUN mkdir /appfolder
 WORKDIR /usr/share/nginx/html
