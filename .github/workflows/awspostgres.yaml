@@ -1,0 +1,26 @@
+name: task1 calling a file from Hello world 
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      image_name:
+        type: string
+        default: testimage
+        required: true
+      file_name:   
+        type: string
+        default: pom.xml
+        required: true
+env: 
+  image_name: ${{ inputs.image_name }}
+  file_name: ${{ inputs.file_name }}
+jobs:
+  checkout:
+    name: checkout repository
+    uses: vineelayla/shared-workflows/.github/workflows/checkout.yaml@main
+    with:
+      image_name: ${{ inputs.image_name }}
+      runner: ubuntu-latest
+      file_name:  ${{ inputs.file_name }}
