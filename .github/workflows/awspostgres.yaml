@@ -1,26 +1,26 @@
-name: task1 calling a file from Hello world 
+name: CI Workflow
+
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:
-    inputs:
-      image_name:
-        type: string
-        default: testimage
-        required: true
-      file_name:   
-        type: string
-        default: pom.xml
-        required: true
-env: 
-  image_name: ${{ inputs.image_name }}
-  file_name: ${{ inputs.file_name }}
+      - main  # Change to your target branch
+
 jobs:
-  checkout:
-    name: checkout repository
-    uses: vineelayla/shared-workflows/.github/workflows/checkout.yaml@main
-    with:
-      image_name: ${{ inputs.image_name }}
-      runner: ubuntu-latest
-      file_name:  ${{ inputs.file_name }}
+  build:
+    runs-on: [self-hosted, test-runner]  # Replace with your custom runner label
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Step 2: Connect to S3
+      - name: Upload to S3
+        run: |
+          aws s3 cp ./images.png s3://vinsawsbucket/images.png
+        # https://vinsawsbucket.s3.amazonaws.com/images.png
+    # Step 3: Connect to RDS (PostgreSQL)
+- name: Connect to PostgreSQL RDS and create table
+  run: |
+    psql -h vinpostgre.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d mydatabase -c "CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(100), email VARCHAR(100) UNIQUE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+  env:
+    PGPASSWORD: ${{ secrets.12345678 }}  # Store your RDS password in GitHub Secrets
