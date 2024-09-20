@@ -18,9 +18,9 @@ jobs:
         run: |
           aws s3 cp ./images.png s3://vinsawsbucket/images.png
         # https://vinsawsbucket.s3.amazonaws.com/images.png
-    # Step 3: Connect to RDS (PostgreSQL)
-- name: Connect to PostgreSQL RDS and create table
-  run: |
-    psql -h vinpostgre.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d mydatabase -c "CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(100), email VARCHAR(100) UNIQUE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
-  env:
-    PGPASSWORD: ${{ secrets.12345678 }}  # Store your RDS password in GitHub Secrets
+    # Step 3: Connect to PostgreSQL RDS and create a table
+      - name: Connect to PostgreSQL RDS and create table
+        run: |
+          psql -h vinawsdatabase15version.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d mydatabase -c "CREATE TABLE IF NOT EXISTS fruits (id SERIAL PRIMARY KEY, name VARCHAR(50), color VARCHAR(20), quantity INT);"
+        env:
+          PGPASSWORD: ${{ secrets.RDS_PASSWORD }}  # Store your RDS password in GitHub Secrets
