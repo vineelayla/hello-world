@@ -14,7 +14,7 @@ jobs:
    
       - name: Upload to S3
         run: |
-          aws s3 cp ./images.png s3://vinsawsbucket/images.png
+          aws s3 cp  s3://vinsawsbucket/images.png images.png
        
       - name: Connect to PostgreSQL RDS and create table
         run: |
