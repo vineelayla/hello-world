@@ -6,18 +6,17 @@ on:
       - master  
 jobs:
   build:
-    runs-on: [self-hosted, newtestrunner]  # Replace with your custom runner label
+    runs-on: newtestrunner
 
     steps:
-      # Step 1: Checkout the repository
+      
       - name: Checkout code
         uses: actions/checkout@v2
-      # Step 2: Connect to S3
+   
       - name: Upload to S3
         run: |
           aws s3 cp ./images.png s3://vinsawsbucket/images.png
-        # https://vinsawsbucket.s3.amazonaws.com/images.png
-    # Step 3: Connect to PostgreSQL RDS and create a table
+       
       - name: Connect to PostgreSQL RDS and create table
         run: |
           psql -h vinawsdatabase15version.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d mydatabase -c "CREATE TABLE IF NOT EXISTS fruits (id SERIAL PRIMARY KEY, name VARCHAR(50), color VARCHAR(20), quantity INT);"
