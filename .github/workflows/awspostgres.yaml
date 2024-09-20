@@ -6,7 +6,7 @@ on:
       - master  
 jobs:
   build:
-    runs-on: [self-hosted, test-runner]  # Replace with your custom runner label
+    runs-on: [self-hosted, newtestrunner]  # Replace with your custom runner label
 
     steps:
       # Step 1: Checkout the repository
