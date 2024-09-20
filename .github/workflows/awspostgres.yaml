@@ -1,10 +1,9 @@
 name: CI Workflow
 
-
 on:
   push:
     branches:
-      - main  # Change to your target branch
+      - master  # Change to your target branch
 
 jobs:
   build:
