@@ -1,8 +1,8 @@
 name: task1 calling a file from Hello world 
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   workflow_dispatch:
     inputs:
       image_name:
