@@ -18,6 +18,6 @@ jobs:
        
       - name: Connect to PostgreSQL RDS and create table
         run: |
-          psql -h vinawsdatabase15version.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d mydatabase -c "CREATE TABLE IF NOT EXISTS fruits (id SERIAL PRIMARY KEY, name VARCHAR(50), color VARCHAR(20), quantity INT);"
+          psql -h vinawsdatabase15version.c9k0gky0kmco.us-east-1.rds.amazonaws.com -U postgres -d postgres -c "CREATE TABLE IF NOT EXISTS fruits (id SERIAL PRIMARY KEY, name VARCHAR(50), color VARCHAR(20), quantity INT);"
         env:
           PGPASSWORD: ${{ secrets.RDS_PASSWORD }}  # Store your RDS password in GitHub Secrets
